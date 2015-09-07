@@ -6,7 +6,7 @@ export default class AddNote extends React.Component {
     super(props);
   }
 
-  handleSubmit () {
+  handleSubmit = () => {
     const newNote = this.refs.note.getDOMNode().value;
     this.refs.note.getDOMNode().value = '';
     this.props.addNote(newNote);
