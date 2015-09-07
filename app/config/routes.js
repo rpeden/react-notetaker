@@ -7,6 +7,6 @@ var Route = Router.Route;
 
 module.exports = (
     <Route name="app" path="/" handler={Main} 
-    
+        <DefaultRoute handler={Home} />
     </Route>
 )
