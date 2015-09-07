@@ -1,14 +1,30 @@
-var React = require('react');
-var Router = require('react-router');
+const React = require('react');
+const Router = require('react-router');
+const UserProfile = require('./Github/UserProfile.jsx');
+const Notes = require('./Notes/Notes.jsx');
+const Repos = require('./Github/Repos.jsx');
+const ReactFireMixin = require('reactfire');
+const Firebase = require('firebase');
 
-var Profile = React.createClass({
-    mixins: [Router.State],
+const Profile = React.createClass({
+    mixins: [Router.State, ReactFireMixin],
+
     getInitialState: function() {
       return {
-        notes: [],
-        bio: {},
-        repos: []
+        notes: [ 'note1', 'note2'],
+        bio: { name: 'Bob'},
+        repos: [ 'repo1', 'repo2']
       };
+    },
+
+    componentDidMount: function() {
+      this.ref = new Firebase('https://scorching-inferno-9258.firebaseio.com/');
+      var childRef = this.ref.child(this.getParams().username)
+      this.bindAsArray(childRef, 'notes');
+    },
+
+    componentWillUnmount: function() {
+        this.unbind('notes');
     },
 
     render: function(){
@@ -16,13 +32,13 @@ var Profile = React.createClass({
       return (
           <div className="row">
             <div className="col-md-4">
-              User Profile Component ---> {username}
+              <UserProfile username={username} bio={this.state.bio}/>
             </div>
             <div className="col-md-4">
-              Repos Component
+              <Repos username={username} repos={this.state.repos}/>
             </div>
             <div className="col-md-4">
-              Notes Component
+              <Notes username={username} notes={this.state.notes}/>
             </div>
           </div>
       )
