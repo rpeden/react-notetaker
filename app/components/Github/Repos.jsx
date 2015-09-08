@@ -1,10 +1,11 @@
-const React = require('react');
+import React from 'react';
 
-const Repos = React.createClass({
-  propTypes: {
+class Repos extends React.Component {
+  static propTypes = {
     username: React.PropTypes.string.isRequired,
     repos: React.PropTypes.array.isRequired
-  },
+  }
+
   render: function() {
     const repos = this.props.repos.map((repo, index) => {
       return (
@@ -13,16 +14,8 @@ const Repos = React.createClass({
           {repo.description && <p> {repo.description} </p>}
         </li>
       )
-    })
-    return (
-      <div>
-        <h3>Repos</h3>
-        <ul className="list-group">
-          {repos}
-        </ul>
-      </div>
-    );
+    });
   }
-});
+}
 
-module.exports = Repos;
+export default Repos;
