@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react'
 
 class NotesList extends React.Component {
-  render () {
-    const notes = this.props.notes.map( (note,index) => {
-      return <li className="list-group-item" key={index}> {note} </li>
-    });
 
+  render () {
     return (
       <ul className="list-group">
-        {notes}
+        {this.formatNotes()}
       </ul>
     )
+  }
+
+  formatNotes() {
+    return this.props.notes.map( (note,index) => {
+      return <li className="list-group-item" key={index}> {note} </li>
+    });
   }
 }
 
