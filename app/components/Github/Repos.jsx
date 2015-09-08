@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Repos extends React.Component {
+
   static propTypes = {
     username: React.PropTypes.string.isRequired,
     repos: React.PropTypes.array.isRequired
@@ -16,6 +17,7 @@ class Repos extends React.Component {
       )
     });
   }
+  
 }
 
 export default Repos;
