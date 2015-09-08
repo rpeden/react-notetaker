@@ -11,7 +11,7 @@ class Main extends React.Component {
                       </div>
                   </nav>
                   <div className="container">
-                      <RouteHandler />
+                      <RouteHandler {...this.props}/>
                   </div>
               </div>)
   }
