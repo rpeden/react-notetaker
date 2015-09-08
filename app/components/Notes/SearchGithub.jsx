@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react'
 import Router from 'react-router'
 
 class SearchGithub extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
 
   render() {
     return (
@@ -18,17 +21,15 @@ class SearchGithub extends React.Component {
     );
   }
 
-  handleSubmit: function () {
+  handleSubmit = () => function () {
     const router = this.context.router;
     const username = this.refs.username.getDOMNode().value;
     this.refs.username.getDOMNode().value = '';
     router.transitionTo('profile', { username: username });
   }
+
 }
 
-SearchGithub.contextTypes {
-  router: React.PropTypes.func.isRequired
-}
 export default SearchGithub;
 
 //mixins: [Router.Navigation]
