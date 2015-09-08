@@ -1,15 +1,15 @@
 import axios from 'axios'
 
 const getRepos = (username) => {
-  return axios.get('https://api.github.com/users/' + username + '/repos');
+  return axios.get(`https://api.github.com/users/${username}/repos`);
 }
 
 const getUserInfo = (username) => {
-  return axios.get('https://api.github.com/users/' + username);
+  return axios.get(`https://api.github.com/users/${username}`);
 }
 
 const helpers = {
-  getGithubInfo: function(username) {
+  getGithubInfo(username) {
     return axios.all([getRepos(username), getUserInfo(username)])
       .then( (arr) => {
         return {
