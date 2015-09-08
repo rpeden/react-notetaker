@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rpeden/react-notetaker#readme",
   "dependencies": {
+    "axios": "^0.5.4",
     "firebase": "^2.2.9",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
