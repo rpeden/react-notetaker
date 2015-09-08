@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react'
 
 export default class AddNote extends React.Component {
+  static propTypes = {
+    addNote: React.PropTypes.func.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -23,7 +26,3 @@ export default class AddNote extends React.Component {
     )
   }
 }
-
-AddNote.propTypes = {
-  addNote: React.PropTypes.func.isRequired
-};
