@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const NotesList = React.createClass({
+class NotesList extends React.Component {
   render () {
     const notes = this.props.notes.map( (note,index) => {
       return <li className="list-group-item" key={index}> {note} </li>
@@ -12,6 +12,6 @@ const NotesList = React.createClass({
       </ul>
     )
   }
-})
+}
 
 export default NotesList;
