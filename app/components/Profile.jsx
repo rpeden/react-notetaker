@@ -5,6 +5,7 @@ const Notes = require('./Notes/Notes.jsx');
 const Repos = require('./Github/Repos.jsx');
 const ReactFireMixin = require('reactfire');
 const Firebase = require('firebase');
+const helpers = require('../utils/helpers');
 
 const Profile = React.createClass({
     mixins: [Router.State, ReactFireMixin],
@@ -17,10 +18,28 @@ const Profile = React.createClass({
       };
     },
 
-    componentDidMount: function() {
-      this.ref = new Firebase('https://scorching-inferno-9258.firebaseio.com/');
+    init: function() {
       var childRef = this.ref.child(this.getParams().username)
       this.bindAsArray(childRef, 'notes');
+
+      const self = this;
+      helpers.getGithubInfo(this.getParams().username)
+        .then((dataObj) => {
+          self.setState({
+            bio: dataObj.bio,
+            repos: dataObj.repos
+          })
+        });
+    },
+
+    componentDidMount: function() {
+      this.ref = new Firebase('https://scorching-inferno-9258.firebaseio.com/');
+      this.init();
+    },
+
+    componentWillReceiveProps: function(nextProps) {
+      this.unbind('notes');
+      this.init();
     },
 
     componentWillUnmount: function() {
