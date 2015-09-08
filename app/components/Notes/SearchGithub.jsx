@@ -1,16 +1,9 @@
 import React, { PropTypes } from 'react'
 import Router from 'react-router'
 
-const SearchGithub  = React.createClass({
-  mixins : [Router.Navigation],
+class SearchGithub extends React.Component {
 
-  handleSubmit: function () {
-    const username = this.refs.username.getDOMNode().value;
-    this.refs.username.getDOMNode().value = '';
-    this.transitionTo('profile', { username: username });
-  },
-
-  render: function() {
+  render() {
     return (
       <div className="col-sm-12">
         <form onSubmit={this.handleSubmit}>
@@ -25,6 +18,17 @@ const SearchGithub  = React.createClass({
     );
   }
 
-});
+  handleSubmit: function () {
+    const router = this.context.router;
+    const username = this.refs.username.getDOMNode().value;
+    this.refs.username.getDOMNode().value = '';
+    router.transitionTo('profile', { username: username });
+  }
+}
 
-module.exports = SearchGithub;
+SearchGithub.contextTypes {
+  router: React.PropTypes.func.isRequired
+}
+export default SearchGithub;
+
+//mixins: [Router.Navigation]
