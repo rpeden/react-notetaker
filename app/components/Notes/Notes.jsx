@@ -2,20 +2,16 @@ import React from 'react';
 import NotesList from './NotesList.jsx';
 import AddNotes from './AddNote.jsx';
 
-const Notes = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    notes: React.PropTypes.array.isRequired,
-    addNote: React.PropTypes.func.isRequired
-  },
-  render: function() {
-    const noteRows = [];
+class Notes extends React.Component {
 
-    this.props.notes.forEach(function(note){
-      noteRows.push(<div>{note}</div>);
-    });
+  static propTypes = {
+   username: React.PropTypes.string.isRequired,
+   notes: React.PropTypes.array.isRequired,
+   addNote: React.PropTypes.func.isRequired
+  }
 
-    let notes = (
+  render() {
+    return (
       <div>
         <h3>Notes for {this.props.username}</h3>
         <AddNotes addNote={this.props.addNote} />
@@ -24,8 +20,8 @@ const Notes = React.createClass({
         </div>
       </div>
     );
-    return notes;
   }
-});
 
-module.exports = Notes;
+}
+
+export default Notes;
