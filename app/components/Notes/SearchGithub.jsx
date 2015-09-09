@@ -21,7 +21,8 @@ class SearchGithub extends React.Component {
     );
   }
 
-  handleSubmit = () => function () {
+  handleSubmit = () => {
+    console.log("trying to submit");
     const router = this.context.router;
     const username = this.refs.username.getDOMNode().value;
     this.refs.username.getDOMNode().value = '';
