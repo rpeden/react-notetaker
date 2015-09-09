@@ -2,7 +2,7 @@ import React from 'react'
 import SearchGithub from './Notes/SearchGithub.jsx'
 import { RouteHandler } from 'react-router';
 
-class Main extends React.Component {
+export default class Main extends React.Component {
   render() {
       return (<div className="main-container">
                   <nav className="navbar navbar-default" role="navigation">
@@ -16,5 +16,3 @@ class Main extends React.Component {
               </div>)
   }
 }
-
-export default Main;
